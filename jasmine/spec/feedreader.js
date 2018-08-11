@@ -26,18 +26,18 @@ $(function() {
         it('feed had a URL defined and is not empty', function() {
             allFeeds.forEach((index) => {
                 expect(index.url).toBeDefined();
-                expect(index.url).not.toBe(0);
-            })
-        })
+                expect(index.url.length).not.toBe(0);
+            });
+        });
 
          //test that loops through each feed in the allFeeds object
          //and ensures it has a name defined and that the name is not empty
         it('feed has a name defined and is not empty', function() {
             allFeeds.forEach((index) => {
                 expect(index.name).toBeDefined();
-                expect(index.name).not.toBe(0);
-            })
-        })
+                expect(index.name.length).not.toBe(0);
+            });
+        });
     });
 
     describe('The menu', function() {
@@ -56,15 +56,13 @@ $(function() {
             menu.click();
             //expects to be hidden
             expect(document.body.classList.contains('menu-hidden')).toBe(true);
-        })
-    })
+        });
+    });
 
     describe('Initial Entries', function() {
         //deal with asynchronous functionality
         beforeEach(function(done) {
-            loadFeed(0, () => {
-                done();
-            });
+            loadFeed(0, done);
         });
 
         //test to make sure that there is at least a single .entry element
@@ -73,8 +71,8 @@ $(function() {
             const entriesArr = document.querySelector('.feed').getElementsByClassName('entry');
             expect(entriesArr.length >= 1).toBeTruthy();
             done();
-        })
-    })
+        });
+    });
 
 
     describe('New Feed Selection', function() {
@@ -86,7 +84,7 @@ $(function() {
                 loadFeed(1, () => {
                     newFeed = document.querySelector('.feed').innerHTML;
                     done();
-                })
+                });
             });
         });
 
@@ -94,7 +92,7 @@ $(function() {
         it('new feed is loaded', function(done) {
             expect(newFeed).not.toBe(previousFeed);
             done();
-        })
+        });
 
-    })
+    });
 }());
